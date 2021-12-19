@@ -15,9 +15,9 @@ jobs:
       uses: danshui-git/github-forks-sync-action@main
       with:
         github_token: ${{ secrets.REPO_TOKEN }}
-        upstream_repository: Lienol/openwrt
-        upstream_branch: 662fe6a6eeede98ef215284aeb5ff8256ee25f1d
-        target_repository: 281677160/openwrt-414254
+        upstream_repository: jerrykuku/luci-theme-argon
+        upstream_branch: cb52e4d07f07b22241ac4a32fc18420770dfb4d3
+        target_repository: 281677160/luci-theme-argon
         target_branch: main
         force: true
         tags: false
