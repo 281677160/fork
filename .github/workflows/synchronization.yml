@@ -10,6 +10,9 @@ jobs:
     runs-on: Ubuntu-20.04
     name: fork仓库
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
     - name: fork
       uses: danshui-git/github-forks-sync-action@main
       with:
