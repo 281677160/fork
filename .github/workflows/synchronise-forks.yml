@@ -15,9 +15,9 @@ jobs:
       uses: danshui-git/github-forks-sync-action@main
       with:
         github_token: ${{ secrets.REPO_TOKEN }}
-        upstream_repository: jerrykuku/luci-theme-argon
-        upstream_branch: cb52e4d07f07b22241ac4a32fc18420770dfb4d3
-        target_repository: 281677160/luci-theme-argon
+        upstream_repository: lee29/build-actions
+        upstream_branch: main
+        target_repository: 281677160/amlogic-s9xxx-openwrt
         target_branch: main
         force: true
         tags: false
