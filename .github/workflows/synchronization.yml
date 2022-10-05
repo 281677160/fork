@@ -20,6 +20,6 @@ jobs:
         upstream_repository: CCnut/feed-netkeeper
         upstream_branch: LUCI-JS-UCITRACK
         target_repository: 281677160/feed-netkeeper
-        target_branch: main
+        target_branch: LUCI-JS-UCITRACK
         force: true
         tags: false
