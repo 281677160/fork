@@ -18,8 +18,8 @@ jobs:
       with:
         github_token: ${{ secrets.REPO_TOKEN }}
         upstream_repository: CCnut/feed-netkeeper
-        upstream_branch: LUCI-LUA-UCITRACK
+        upstream_branch: LUCI-JS-UCITRACK
         target_repository: 281677160/feed-netkeeper
-        target_branch: LUCI-LUA-UCITRACK
+        target_branch: LUCI-JS-UCITRACK
         force: true
         tags: false
