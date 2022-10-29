@@ -18,7 +18,7 @@ jobs:
       with:
         github_token: ${{ secrets.REPO_TOKEN }}
         upstream_repository: Lienol/openwrt
-        upstream_branch: 61d8e8f9a45ee2fa47f27c59db6b0e416a5efde7
+        upstream_branch: 837104ec79314536160d6f2406c7989b014ac198
         target_repository: 281677160/Lienol19.07
         target_branch: main
         force: true
