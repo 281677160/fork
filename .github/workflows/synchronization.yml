@@ -17,9 +17,9 @@ jobs:
       uses: TobKed/github-forks-sync-action@master
       with:
         github_token: ${{ secrets.REPO_TOKEN }}
-        upstream_repository: Lienol/openwrt
-        upstream_branch: 837104ec79314536160d6f2406c7989b014ac198
-        target_repository: 281677160/Lienol19.07
+        upstream_repository: ophub/amlogic-s9xxx-openwrt
+        upstream_branch: main
+        target_repository: 281677160/s9xxx-openwrt
         target_branch: main
         force: true
         tags: false
