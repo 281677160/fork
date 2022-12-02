@@ -17,7 +17,7 @@ jobs:
       uses: TobKed/github-forks-sync-action@master
       with:
         github_token: ${{ secrets.REPO_TOKEN }}
-        upstream_repository: AutoBuild-Actions-BETA
+        upstream_repository: Hyy2001X/AutoBuild-Actions-BETA
         upstream_branch: master
         target_repository: 281677160/AutoBuild-BETA
         target_branch: main
