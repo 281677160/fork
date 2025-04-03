@@ -48,7 +48,9 @@ jobs:
         cd $GITHUB_WORKSPACE
         git clone -b ${{ inputs.REPO_BRANCH }} --single-branch https://github.com/${{ inputs.REPO_URL }} upstream
         if [[ -n "${{ inputs.COMMIT_HASH }}" ]]; then
+          cd upstream
           git reset --hard ${{ inputs.COMMIT_HASH }}
+          cd ../
         fi
         git clone -b ${{ inputs.MY_REPO_BRANCH }} https://user:${{ secrets.REPO_TOKEN }}@github.com/${{ inputs.MY_REPO_URL }}.git Warehouse
         cd Warehouse
