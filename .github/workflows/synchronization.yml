@@ -12,7 +12,7 @@ on:
         required: true
         default: ''
       COMMIT_HASH:
-        description: '回退上游仓库哈希值,比如(60824ec),不需回退则不要填写'
+        description: '回退上游仓库哈希值,比如(60824ec),不需回退则千万别填写'
         required: false
         default: ''
       MY_REPO_URL:
