@@ -30,7 +30,7 @@ jobs:
     name: fork仓库
     
     steps:
-    - name: Checkout
+    - name: 准备完毕
       uses: actions/checkout@v4
 
     - name: 密匙检测（密匙为空则退出）
@@ -50,7 +50,7 @@ jobs:
           exit 1
         fi
     
-    - name: Initialization environment
+    - name: 整理环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -60,7 +60,7 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
 
-    - name: Clone Warehouse
+    - name: 拉取上游仓库和清理要替换的仓库
       run: |
         cd $GITHUB_WORKSPACE
         git clone -b ${{ inputs.REPO_BRANCH }} --single-branch https://github.com/${{ inputs.REPO_URL }} upstream
@@ -74,7 +74,7 @@ jobs:
         rm -Rf *
         git rm --cache *
 
-    - name: Upload Warehouse
+    - name: 替换仓库
       continue-on-error: true
       run: |
         cd $GITHUB_WORKSPACE
