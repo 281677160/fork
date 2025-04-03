@@ -1,25 +1,67 @@
-name: Fork
+name: fork仓库
 on:
+  repository_dispatch:
   workflow_dispatch:
-
-#  schedule:
-#    - cron: 0 8 */5 * *
+    inputs:
+      REPO_URL:
+        description: '上游源码仓库(账号/仓库),比如：coolsnowwolf/lede'
+        required: true
+        default: ''
+      REPO_BRANCH:
+        description: '上游源码仓库的分支,比如：master 或 main 之类'
+        required: true
+        default: ''
+      COMMIT_HASH:
+        description: '回退上游仓库哈希值,比如(60824ec),不需回退则不要填写'
+        required: false
+        default: ''
+      MY_REPO_URL:
+        description: '替换存入仓库(账号/仓库),比如：281677160/actions-openwrt'
+        required: true
+        default: ''
+      MY_REPO_BRANCH:
+        description: '替换存入仓库的分支,比如：master 或 main 之类'
+        required: true
+        default: ''
 
 jobs: 
   build:
-    runs-on: Ubuntu-20.04
+    runs-on: Ubuntu-22.04
     name: fork仓库
+    
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     
-    - name: fork
-      uses: TobKed/github-forks-sync-action@master
-      with:
-        github_token: ${{ secrets.REPO_TOKEN }}
-        upstream_repository: 281677160/autobuild
-        upstream_branch: 1f1386a131dd37f391f1550ab380c5b9ba950504
-        target_repository: 281677160/autobuild
-        target_branch: main
-        force: true
-        tags: false
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install git git-core wget curl grep
+        sudo timedatectl set-timezone "$TZ"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+
+    - name: Clone Warehouse
+      run: |
+        cd $GITHUB_WORKSPACE
+        git clone -b ${{ inputs.REPO_BRANCH }} --single-branch https://github.com/${{ inputs.REPO_URL }} upstream
+        if [[ -n "${{ inputs.COMMIT_HASH }}" ]]; then
+          git reset --hard ${{ inputs.COMMIT_HASH }}
+        fi
+        git clone -b ${{ inputs.MY_REPO_BRANCH }} https://user:${{ secrets.REPO_TOKEN }}@github.com/${{ inputs.MY_REPO_URL }}.git Warehouse
+        cd Warehouse
+        rm -Rf *
+        git rm --cache *
+
+    - name: Upload Warehouse
+      continue-on-error: true
+      run: |
+        cd $GITHUB_WORKSPACE
+        cp -Rf upstream/* Warehouse
+        sudo chmod -R +x Warehouse
+        cd $GITHUB_WORKSPACE/Warehouse
+        git add .
+        git commit -m "$(date +%Y年%m月%d号-%H点%M分)"
+        git push --quiet "https://${{ secrets.REPO_TOKEN }}@github.com/${{ inputs.MY_REPO_URL }}" HEAD:${{ inputs.MY_REPO_BRANCH }}
