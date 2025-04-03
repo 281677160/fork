@@ -16,11 +16,11 @@ on:
         required: false
         default: ''
       MY_REPO_URL:
-        description: '替换存入仓库(账号/仓库),比如：281677160/actions-openwrt'
+        description: '要替换仓库(账号/仓库),比如：281677160/actions-openwrt'
         required: true
         default: ''
       MY_REPO_BRANCH:
-        description: '替换存入仓库的分支,比如：master 或 main 之类'
+        description: '要替换仓库的分支,比如：master 或 main 之类'
         required: true
         default: ''
 
