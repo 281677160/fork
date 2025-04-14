@@ -82,4 +82,5 @@ jobs:
         sudo chmod -R +x Warehouse
         cd Warehouse
         git add .
+        git commit -m
         git push --quiet "https://${{ secrets.REPO_TOKEN }}@github.com/${{ inputs.MY_REPO_URL }}" HEAD:${{ inputs.MY_REPO_BRANCH }}
