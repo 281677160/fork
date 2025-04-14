@@ -12,7 +12,7 @@ on:
         required: true
         default: ''
       COMMIT_HASH:
-        description: '回退上游仓库哈希值,比如(60824ec),不需回退则千万别填写'
+        description: '回退上游仓库哈希值,比如(295085d44e783aab53956cde9ba94efa4fe5c3e2),不需回退则千万别填写'
         required: false
         default: ''
       MY_REPO_URL:
@@ -66,7 +66,7 @@ jobs:
         git clone -b ${{ inputs.REPO_BRANCH }} --single-branch https://github.com/${{ inputs.REPO_URL }} upstream
         if [[ -n "${{ inputs.COMMIT_HASH }}" ]]; then
           cd upstream
-          git reset --hard ${{ inputs.COMMIT_HASH }}
+          git checkout ${{ inputs.COMMIT_HASH }}
           cd ../
         fi
         git clone -b ${{ inputs.MY_REPO_BRANCH }} https://user:${{ secrets.REPO_TOKEN }}@github.com/${{ inputs.MY_REPO_URL }}.git Warehouse
