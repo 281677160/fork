@@ -82,5 +82,5 @@ jobs:
         sudo chmod -R +x Warehouse
         cd Warehouse
         git add .
-        git commit -m
+        git commit -m "$(date +%Y年%m月%d号-%H点%M分)"
         git push --quiet "https://${{ secrets.REPO_TOKEN }}@github.com/${{ inputs.MY_REPO_URL }}" HEAD:${{ inputs.MY_REPO_BRANCH }}
