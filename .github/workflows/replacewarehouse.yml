@@ -66,7 +66,6 @@ jobs:
         git clone -b ${{ inputs.REPO_BRANCH }} --single-branch https://github.com/${{ inputs.REPO_URL }} upstream
         if [[ -n "${{ inputs.COMMIT_HASH }}" ]]; then
           cd upstream
-          git checkout ${{ inputs.COMMIT_HASH }}
           git reset --hard ${{ inputs.COMMIT_HASH }}
           git checkout -b new-branch-name ${{ inputs.COMMIT_HASH }}
           cd ../
